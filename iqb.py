@@ -25,11 +25,22 @@ for row in df['Sequence'].values:
       row_encode.append(codes.get(code, 0))
     encode_list.append(np.array(row_encode))
 
-
-from keras.preprocessing.sequence import pad_sequences
-max_length = 100
-train_pad = pad_sequences(encode_list, maxlen=max_length, padding='post', truncating='post')
-print(train_pad.shape)
+#print(encode_list)
+#from keras.preprocessing.sequence import pad_sequences
+#max_length = 100
+#train_pad = pad_sequences(encode_list, maxlen=max_length, padding='post', truncating='post')
+#print(train_pad.shape)
+import pickle
+import sys
+np.set_printoptions(threshold=sys.maxsize)
+objects = []
+with (open("data4.pkl", "rb")) as openfile:
+    while True:
+        try:
+            objects.append(pickle.load(openfile))
+        except EOFError:
+            break
+print(objects)
 #print(encode_list)
 #X_train, X_test, y_train, y_test = train_test_split(X, y,
 #random_state=42)
